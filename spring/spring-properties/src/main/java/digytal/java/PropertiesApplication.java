@@ -14,6 +14,7 @@ public class PropertiesApplication {
 	@Bean
     public CommandLineRunner run(FtpService ftp, EmailService email) {
         return args -> {
+			System.out.println("Teste");
         	ftp.conectar();
         	email.enviar();
 		};
