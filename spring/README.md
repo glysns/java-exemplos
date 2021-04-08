@@ -9,7 +9,7 @@ Projeto open source para demonstrar recursos e exemplos utilizando a linguagem J
 
 |Projeto                            |Descrição                      
 |-----------------------------------|-------------------------------
-|[spring-properties](https://github.com/glysns/java-exemplos/tree/main/spring/spring-rest-api)|Projeto Spring para demonstração do uso de Springboot para criar uma Rest API
+|[spring-properties](https://github.com/glysns/java-exemplos/tree/main/spring/spring-properties)|Projeto open source que explora os recursos via applications.properties.
 |[spring-rest-api](https://github.com/glysns/java-exemplos/tree/main/spring/spring-rest-api)|Projeto Spring para demonstração do uso de Springboot para criar uma Rest API
 |[spring-jpa-rest-api](https://github.com/glysns/java-exemplos/tree/main/spring/spring-jpa-rest-api)|Projeto Spring para demonstração do uso de Springboot, API Rest e Integração com banco de dados com Spring Data Jpa
 |[spring-rest-entity-to-dto](https://github.com/glysns/java-exemplos/tree/main/spring/spring-rest-entity-to-dto)|Projeto Spring para demonstração do uso de Springboot, ModelMapper, API Rest e Integração com banco de dados com Spring Data Jpa
