@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EmailService {
-	@Value("${remetente}")
 	//@Value("${remetente:gleyson@digytal.com.br}")
+	@Value("${remetente}")
 	private String remetente;
 	
 	@Value("${destinatarios}")
