@@ -32,7 +32,19 @@ Para resolver o problema do espaço reservado, podemos definir o valor padrão p
 ```
 @Value("${remetente:gleyson@digytal.com.br}")
 ```
+####application.properties ternário
+É possivel mudar o valor de uma propriedade em tempo de execução sem a necessidade de expor esta propriedade fora da aplicação, pode-se criar um parametro que o usuário passa a declarar para ser utilizada nas configurações reais:
 
+* Imagina que a aplicação seja instalada para diferentes instâncias de banco de dados onde o usário e senha serão diferentes:
+```
+spring.datasource.username=${DATABASE_USER:postgres}
+spring.datasource.password=${DATABASE_PASSWORD:postgres}
+```
+
+* Mudando o usuário do banco de dados através da variável `DATABASE_USER`
+```
+java -jar spring-properties-1.0.jar --DATABASE_USER=admin
+```
 
 ####Listas
 A anotação @Value também suporta valores do tipo List conforme exemplos abaixo:
@@ -45,6 +57,23 @@ A anotação @Value também suporta valores do tipo List conforme exemplos abaix
   @Value("${destinatarios}")
   private List<String>destinatarios;
   ```
+####Criando um objeto através do application.properties 
+É muito simples criar um objeto com o `application.properties` basta em sua classe incluir as anotações abaixo:
+
+* `application.properties`
+  ```
+   ##OBTENDO Objeto com os atributos com a Anotação @Configuration e @ConfigurationProperties(prefix = "ftp") do Spring
+   ftp.host:localhost
+   ftp.port:21
+   ftp.user:digytal
+   ftp.pass:javaexemplos
+  ```
+* `FtpCredencial`
+  ```
+   @Configuration
+   @ConfigurationProperties(prefix = "ftp")
+  ```
+![](https://github.com/glysns/java-exemplos/blob/main/java-swing/desktop-utils/src/main/resources/window-builder-install.png)
 
 
 ####Propriedades Externalizadas
@@ -54,8 +83,31 @@ Em vez de manter o arquivo de propriedades no caminho de classe, podemos manter 
 ```
 ![](https://github.com/glysns/java-exemplos/blob/main/java-swing/desktop-utils/src/main/resources/window-builder-install.png)
 
+####Perfil da Aplicação
+Vamos entender como ter o perfil ativo do Spring em application.properties. Por padrão, aplicativo. propriedades serão usadas para executar o aplicativo Spring Boot. Se você quiser usar propriedades baseadas em perfil, podemos manter arquivos de propriedades separados para cada perfil, conforme mostrado abaixo
 
+* application.properties
+```
+server.port = 8080
+spring.application.name = properties-app
+```
 
+* application-dev.properties
+```
+server.port = 9090
+spring.application.name = properties-app
+```
+
+* application-prod.properties
+```
+server.port = 9191
+spring.application.name = properties-app
+```
+
+* Definindo o perfil pelo arquivo selecionado:
+```
+java -jar spring-properties-1.0.jar --spring.profiles.active=dev
+```
 
 ### Inicialização
 

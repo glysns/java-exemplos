@@ -13,10 +13,15 @@ public class EmailService {
 	
 	@Value("${destinatarios}")
 	private List<String>destinatarios;
+
+	@Value("${spring.datasource.username}")
+	private String username;
 	
 	public void enviar() {
 		System.out.println("Remetente:" + remetente);
 		System.out.println("Destinatarios:" + destinatarios);
+		System.out.println("username database " + username);
 		System.out.println("Email enviado com sucesso");
+
 	}
 }
