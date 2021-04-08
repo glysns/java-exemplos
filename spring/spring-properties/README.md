@@ -25,7 +25,7 @@ A anotação @Value é usada para ler o ambiente ou o valor da propriedade do ap
 ```
 @Value("${property_key_name}")
 ```
-![](https://github.com/glysns/java-exemplos/blob/main/java-swing/desktop-utils/src/main/resources/window-builder-install.png)
+![](https://github.com/glysns/java-exemplos/blob/main/spring/spring-properties/src/main/resources/properties_value.png)
 
 Nota - Se a propriedade não for encontrada durante a execução do aplicativo, Spring Boot lança a exceção de Argumento Ilegal como Não foi possível resolver o marcador 'spring.application.name' no valor "$ {remetente}" .
 Para resolver o problema do espaço reservado, podemos definir o valor padrão para a propriedade usando a sintaxe fornecida abaixo:
@@ -73,7 +73,7 @@ A anotação @Value também suporta valores do tipo List conforme exemplos abaix
    @Configuration
    @ConfigurationProperties(prefix = "ftp")
   ```
-![](https://github.com/glysns/java-exemplos/blob/main/java-swing/desktop-utils/src/main/resources/window-builder-install.png)
+![](https://github.com/glysns/java-exemplos/blob/main/spring/spring-properties/src/main/resources/config_properties.png)
 
 
 #### Propriedades Externalizadas
@@ -81,7 +81,7 @@ Em vez de manter o arquivo de propriedades no caminho de classe, podemos manter 
 ```
 -Dspring.config.location = C:\application.properties
 ```
-![](https://github.com/glysns/java-exemplos/blob/main/java-swing/desktop-utils/src/main/resources/window-builder-install.png)
+![](https://github.com/glysns/java-exemplos/blob/main/spring/spring-properties/src/main/resources/externalized_properties.jpg)
 
 #### Perfil da Aplicação
 Vamos entender como ter o perfil ativo do Spring em application.properties. Por padrão, aplicativo. propriedades serão usadas para executar o aplicativo Spring Boot. Se você quiser usar propriedades baseadas em perfil, podemos manter arquivos de propriedades separados para cada perfil, conforme mostrado abaixo
@@ -108,6 +108,8 @@ spring.application.name = properties-app
 ```
 java -jar spring-properties-1.0.jar --spring.profiles.active=dev
 ```
+
+![](https://github.com/glysns/java-exemplos/blob/main/spring/spring-properties/src/main/resources/env.png)
 
 ### Inicialização
 
