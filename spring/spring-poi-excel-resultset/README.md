@@ -16,7 +16,18 @@ Dividimos as classes em pacotes de acordo com suas responsabilidades.
 - Model: Classes que represetam o modelo da aplicação na qual é necessário criar através da leitura do arquivo
 - Util: pacote que contém a classe `digytal.java.util.ExcelResultSet` com toda lógica de leitura de arquivo.
 
+##### No pom.xml inclua a dependência
+
+```
+<!-- APACHE POI -->
+<dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi-ooxml</artifactId>
+	<version>3.15</version>
+</dependency>
+```
 > ** ExcelResultSet: Definição de uma classe Utilitária que lê registros através de uma planilha Excel com base na estrutura JDBC ResultSet**
+
 
 #### Iniciando a aplicação
 
