@@ -17,11 +17,13 @@ Projeto Spring para demonstração do uso de Springboot, Postgres e Controle de 
 ###### [Flyway: Naming Patterns Matter](https://www.red-gate.com/blog/database-devops/flyway-naming-patterns-matter)
 
 #### Estrutura do Projeto
-Dividimos as classes em pacotes de acordo com suas responsabilidades.
-- Model: onde definimos os modelos ou seja as classes dos objetos que usamos no sistema
-- Repository: onde definimos o JPA para acessar os dados do BD
-- Resource: também chamado de Controller foi onde definimos a exponsição dos recursos via API por meio da definição dos endpoints
-- Config: onde definimos as configurações do Swagger para documentar a API
+Nosso foco aqui é na pasta `src/main/resources` 
+- Dentro da pasta `resources` criamos uma pasta `db`
+- Dentro da pasta `db` criamos uma pasta `migration`
+- Dentro da pasta `migration` criamos 03 arquivos .sql conforme abaixo:
+	- **V1__create_schema_one.sql**: Contém script para gerar o `shema_one`.
+	- **V2__create_schema_two.sql**: Contém script para gerar o `shema_two`.
+	- **V3__carga_ceps.sql**: Contém script para realizar uma carga de ceps. **NOTA**: Foi necessário criar via script a tabela `schema_one.tab_endereco`   
 
 #### Configuração do Banco para usar o Spring Data Jpa
 
