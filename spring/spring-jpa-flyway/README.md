@@ -2,16 +2,19 @@
 www.digytal.com.br
 (11) 95894 0362
 
-## Springboot - Web API - Exemplos de Integração com Banco de Dados
+## Springboot - Postgres - FlyWay - Migration
 
-Projeto Spring para demonstração do uso de Springboot, API Rest e Integração com banco de dados com Spring Data Jpa
+Projeto Spring para demonstração do uso de Springboot, Postgres e Controle de Versão de Scripts com FlyWay
+
+* Flyway é uma dentre as várias ferramentas que se propõem a trazer ordem e organização para os scripts SQL que são executados no banco de dados, funcionando como um controle de versão do mesmo.
 
 
 #### Colaboradores
 - [Gleyson Sampaio](https://github.com/glysns)
 
 #### Requisitos
-###### [Criando uma Rest API com Springboot](https://github.com/glysns/java-exemplos/tree/main/spring/spring-rest-api)
+###### [Database Versioning With Flyway and Java](https://dzone.com/articles/database-versioning-with-flyway-and-java)
+###### [Flyway: Naming Patterns Matter](https://www.red-gate.com/blog/database-devops/flyway-naming-patterns-matter)
 
 #### Estrutura do Projeto
 Dividimos as classes em pacotes de acordo com suas responsabilidades.
