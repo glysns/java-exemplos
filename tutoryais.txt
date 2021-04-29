@@ -1,5 +1,4 @@
 Applications.properties
 Handler Exception
 Flayway
-
 Springboot, Postgres e Heroku
