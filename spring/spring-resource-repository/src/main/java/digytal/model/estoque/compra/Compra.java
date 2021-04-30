@@ -1,5 +1,0 @@
-package digytal.model.estoque.compra;
-
-public class Compra {
-
-}
