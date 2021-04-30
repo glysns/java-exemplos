@@ -19,7 +19,7 @@ class ModelEntityConverter extends ModelConveter {
 		for(Field field: src.getClass().getDeclaredFields()) {
 			Object value= field.get(src);
 			if(value!=null) {
-				if(domainClass(field.getType())) {
+				if(isDomainClass(field.getType())) {
 					value = getInstance(value).newInstance();
 				}
 				invokeSet(other,field.getName(),value);

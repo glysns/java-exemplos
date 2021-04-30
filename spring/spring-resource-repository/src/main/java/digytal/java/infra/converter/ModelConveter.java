@@ -1,5 +1,8 @@
 package digytal.java.infra.converter;
 
+import java.util.Collection;
+import java.util.Map;
+
 public abstract class ModelConveter {
 	protected Object src;
 	ModelConveter(Object src){
@@ -17,7 +20,10 @@ public abstract class ModelConveter {
 	}
 	public abstract <E> E newInstance() throws Exception;
 	abstract Object converter(Object other) throws Exception;
-	boolean domainClass(Class clazz){
+	boolean isDomainClass(Class clazz){
 		return !( clazz.isPrimitive() || clazz.getName().startsWith("java."));
+	}
+	boolean isCollection(Class c) {
+		  return Collection.class.isAssignableFrom(c) || Map.class.isAssignableFrom(c);
 	}
 }

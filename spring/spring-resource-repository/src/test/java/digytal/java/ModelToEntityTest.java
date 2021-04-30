@@ -3,6 +3,8 @@ package digytal.java;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import digytal.java.infra.converter.ModelConveter;
@@ -16,7 +18,7 @@ public class ModelToEntityTest {
 	void modelToEntity(){
 		try {
 			Marca dto = new Marca();
-			dto.nome="FORD";
+			dto.nome="DELL";
 			dto.id=1234;
 			dto.ativo=true;
 			MarcaEntity entity = ModelConveter.getInstance(dto).newInstance();
@@ -31,11 +33,11 @@ public class ModelToEntityTest {
 	void modelToEntityAssociation(){
 		try {
 			Marca marca = new Marca();
-			marca.nome="FORD";
+			marca.nome="DELL";
 			marca.id=1234;
 			
 			Produto dto = new Produto();
-			dto.nome="FORD";
+			dto.nome="NOTEBOOK DELL 13' 2X1";
 			dto.id=1234;
 			dto.marca=marca;
 			dto.ativo=true;
@@ -53,5 +55,29 @@ public class ModelToEntityTest {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	@Test
+	void modelToEntitySimpleList(){
+		try {
+			Produto dto = new Produto();
+			dto.nome="NOTEBOOK DELL 13' 2X1";
+			dto.id=1234;
+			dto.ativo=true;
+			dto.tags = new ArrayList<String>();
+			dto.tags.add("INSPIRON");
+			dto.tags.add("2X1");
+			dto.tags.add("TECNOLOGIA");
+			
+			ProdutoEntity entity = ModelConveter.getInstance(dto).newInstance();
+			assertEquals(dto.id, entity.getId());
+			assertEquals(dto.nome, entity.getNome());
+			assertEquals(dto.ativo, entity.isAtivo());
+			assertEquals(3, entity.getTags().size());
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
