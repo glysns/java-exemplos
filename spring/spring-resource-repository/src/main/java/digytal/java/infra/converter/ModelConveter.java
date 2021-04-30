@@ -22,12 +22,18 @@ public abstract class ModelConveter {
 	}
 	public abstract <E> E newInstance() throws Exception;
 	abstract Object converter(Object other) throws Exception;
-	boolean isDomainClass(Class clazz){
-		return !( clazz.isPrimitive() || clazz.getName().startsWith("java."));
+	
+	boolean isDomainClass(Object o){
+		Class c = o.getClass();
+		return !( c.isPrimitive() || c.getName().startsWith("java."));
 	}
 	boolean isCollection(Object o) {
-			Class c = o.getClass();
+		  Class c = o.getClass();
 		  return Collection.class.isAssignableFrom(c) || Map.class.isAssignableFrom(c);
+	}
+	boolean isItem(Object o) {
+		  Class c = o.getClass();
+		  return isCollection(o) && isDomainClass(o);
 	}
 	Object add(Object list, Object item) throws Exception {
 		Method m = list.getClass().getDeclaredMethod("add",Object.class);
