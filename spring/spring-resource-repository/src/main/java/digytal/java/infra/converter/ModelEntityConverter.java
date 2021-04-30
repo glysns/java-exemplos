@@ -35,6 +35,4 @@ class ModelEntityConverter extends ModelConveter {
 		}
 		return other;
 	}
-	
-
 }

@@ -74,7 +74,7 @@ public class ModelToEntityTest {
 			assertEquals(dto.nome, entity.getNome());
 			assertEquals(dto.ativo, entity.isAtivo());
 			assertEquals(3, entity.getTags().size());
-			
+			assertEquals(true, entity.getTags().containsAll(dto.tags));
 			
 		}catch (Exception e) {
 			e.printStackTrace();
