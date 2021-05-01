@@ -39,7 +39,7 @@ public class SwaggerConfig {
 		docket
 		.globalOperationParameters(params)
 		.select()
-		.apis(RequestHandlerSelectors.basePackage("gama.educacao.resource"))
+		.apis(RequestHandlerSelectors.basePackage("digytal.java.resource"))
 		.paths(PathSelectors.any())
 		.build()
 		.apiInfo(this.informacoesApi().build())

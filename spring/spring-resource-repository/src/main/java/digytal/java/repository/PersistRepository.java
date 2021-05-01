@@ -15,4 +15,8 @@ public class PersistRepository {
 	public void save(Object entity) {
 		em.persist(entity);
 	}
+	
+	public <E> E find(Class entityClass, Object id) {
+		return (E) em.find(entityClass, id);
+	}
 }
