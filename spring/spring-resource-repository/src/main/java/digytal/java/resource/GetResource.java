@@ -37,4 +37,8 @@ public class GetResource {
 	public Compra compra(@PathVariable Integer id) throws Exception {
 		return repository.find(CompraEntity.class, id);
 	}
+	@GetMapping("/compras/{id}/{graph}")
+	public Compra compraGraph(@PathVariable("id") Integer id,@PathVariable("graph") String graph) throws Exception {
+		return repository.findGraph(CompraEntity.class, id,graph);
+	}
 }

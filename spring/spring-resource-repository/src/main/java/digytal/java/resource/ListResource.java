@@ -35,7 +35,7 @@ public class ListResource {
 	
 	@Autowired
 	private CompraService s;
-	@GetMapping("/compras-all")
+	//@GetMapping("/compras-all")
 	public Iterable<CompraEntity> compras() throws Exception {
 		return s.compras();
 	}

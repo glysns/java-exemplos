@@ -1,0 +1,3 @@
+entity graph:
+https://www.baeldung.com/jpa-entity-graph
+https://thorben-janssen.com/jpa-21-entity-graph-part-1-named-entity/

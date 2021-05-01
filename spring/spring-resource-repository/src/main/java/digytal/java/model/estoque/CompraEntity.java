@@ -5,13 +5,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tab_compra")
@@ -32,8 +33,8 @@ public class CompraEntity extends Compra {
 	}
 	private List<CompraItemEntity> itens = new ArrayList<CompraItemEntity>();
 	
-	@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.LAZY)
-	//@LazyCollection(LazyCollectionOption.TRUE)
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "cd_compra")
 	public List<CompraItemEntity> getItens() {
 		return itens;
