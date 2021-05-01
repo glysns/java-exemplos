@@ -29,9 +29,10 @@ public class CompraEntity extends Compra {
 	public void setNota(String nota) {
 		this.nota = nota;
 	}
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "compra_id")
 	private List<CompraItemEntity> itens = new ArrayList<CompraItemEntity>();
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "cd_compra")
 	public List<CompraItemEntity> getItens() {
 		return itens;
 	}
