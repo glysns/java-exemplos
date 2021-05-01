@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import digytal.java.model.categoria.Categoria;
 import digytal.java.model.categoria.CategoriaEntity;
+import digytal.java.model.estoque.Compra;
+import digytal.java.model.estoque.CompraEntity;
 import digytal.java.model.marca.Marca;
 import digytal.java.model.marca.MarcaEntity;
 import digytal.java.model.produto.Produto;
@@ -30,5 +32,9 @@ public class GetResource {
 	@GetMapping("/produtos/{id}")
 	public Produto produto(@PathVariable Integer id) throws Exception {
 		return repository.find(ProdutoEntity.class, id);
+	}
+	@GetMapping("/compras/{id}")
+	public Compra compra(@PathVariable Integer id) throws Exception {
+		return repository.find(CompraEntity.class, id);
 	}
 }
