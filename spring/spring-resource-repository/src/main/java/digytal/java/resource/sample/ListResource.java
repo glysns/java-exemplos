@@ -1,4 +1,4 @@
-package digytal.java.resource;
+package digytal.java.resource.sample;
 
 import java.util.List;
 
@@ -11,9 +11,7 @@ import digytal.java.model.categoria.CategoriaEntity;
 import digytal.java.model.estoque.CompraEntity;
 import digytal.java.model.marca.MarcaEntity;
 import digytal.java.model.produto.ProdutoEntity;
-import digytal.java.repository.CompraRepository;
-import digytal.java.repository.CompraService;
-import digytal.java.repository.CustomRepository;
+import digytal.java.repository.sample.CustomRepository;
 
 @RestController
 @RequestMapping("/list")
@@ -31,13 +29,6 @@ public class ListResource {
 	@GetMapping("/produtos")
 	public List produto() throws Exception {
 		return repository.list(ProdutoEntity.class);
-	}
-	
-	@Autowired
-	private CompraService s;
-	//@GetMapping("/compras-all")
-	public Iterable<CompraEntity> compras() throws Exception {
-		return s.compras();
 	}
 	@GetMapping("/compras")
 	public List compra() throws Exception {

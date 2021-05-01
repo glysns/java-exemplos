@@ -1,4 +1,4 @@
-package digytal.java.repository;
+package digytal.java.repository.sample;
 
 import java.util.Arrays;
 import java.util.HashMap;

@@ -13,7 +13,7 @@ import digytal.java.model.estoque.CompraEntity;
 import digytal.java.model.estoque.CompraItemEntity;
 import digytal.java.model.marca.MarcaEntity;
 import digytal.java.model.produto.ProdutoEntity;
-import digytal.java.repository.CustomRepository;
+import digytal.java.repository.sample.CustomRepository;
 
 @SpringBootApplication
 public class SpringResourceRepositoryApplication {

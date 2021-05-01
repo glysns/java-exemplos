@@ -1,4 +1,4 @@
-package digytal.java.resource;
+package digytal.java.resource.sample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import digytal.java.model.marca.Marca;
 import digytal.java.model.marca.MarcaEntity;
 import digytal.java.model.produto.Produto;
 import digytal.java.model.produto.ProdutoEntity;
-import digytal.java.repository.CustomRepository;
+import digytal.java.repository.sample.CustomRepository;
 
 @RestController
 @RequestMapping("/get")
