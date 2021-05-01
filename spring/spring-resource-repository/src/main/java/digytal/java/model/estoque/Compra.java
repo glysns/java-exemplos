@@ -1,4 +1,4 @@
-package digytal.java.model.cadastro.estoque;
+package digytal.java.model.estoque;
 
 import java.util.ArrayList;
 import java.util.List;

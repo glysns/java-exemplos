@@ -1,4 +1,4 @@
-package digytal.java.model.cadastro.marca;
+package digytal.java.model.marca;
 
 import digytal.java.commons.Model;
 

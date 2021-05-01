@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import digytal.java.infra.converter.ModelConveter;
-import digytal.java.model.cadastro.estoque.Compra;
-import digytal.java.model.cadastro.estoque.CompraEntity;
-import digytal.java.model.cadastro.estoque.CompraItem;
-import digytal.java.model.cadastro.estoque.CompraItemEntity;
-import digytal.java.model.cadastro.marca.Marca;
-import digytal.java.model.cadastro.marca.MarcaEntity;
-import digytal.java.model.cadastro.produto.Produto;
-import digytal.java.model.cadastro.produto.ProdutoEntity;
+import digytal.java.model.estoque.Compra;
+import digytal.java.model.estoque.CompraEntity;
+import digytal.java.model.estoque.CompraItem;
+import digytal.java.model.estoque.CompraItemEntity;
+import digytal.java.model.marca.Marca;
+import digytal.java.model.marca.MarcaEntity;
+import digytal.java.model.produto.Produto;
+import digytal.java.model.produto.ProdutoEntity;
 
 public class ModelToEntityTest {
 	@Test

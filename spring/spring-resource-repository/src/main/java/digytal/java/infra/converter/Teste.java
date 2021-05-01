@@ -1,7 +1,7 @@
 package digytal.java.infra.converter;
 
-import digytal.java.model.cadastro.marca.Marca;
-import digytal.java.model.cadastro.marca.MarcaEntity;
+import digytal.java.model.marca.Marca;
+import digytal.java.model.marca.MarcaEntity;
 
 public class Teste {
 	public static void main(String[] args) {

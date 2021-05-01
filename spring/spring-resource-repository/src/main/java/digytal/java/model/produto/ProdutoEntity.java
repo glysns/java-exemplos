@@ -1,9 +1,9 @@
-package digytal.java.model.cadastro.produto;
+package digytal.java.model.produto;
 
 import java.util.List;
 
 import digytal.java.commons.Model;
-import digytal.java.model.cadastro.marca.MarcaEntity;
+import digytal.java.model.marca.MarcaEntity;
 
 public class ProdutoEntity extends Produto implements Model {
 	public Integer getId() {

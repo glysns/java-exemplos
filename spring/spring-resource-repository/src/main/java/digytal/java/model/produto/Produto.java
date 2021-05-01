@@ -1,9 +1,9 @@
-package digytal.java.model.cadastro.produto;
+package digytal.java.model.produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import digytal.java.model.cadastro.marca.Marca;
+import digytal.java.model.marca.Marca;
 
 public class Produto {
 	public Integer id;

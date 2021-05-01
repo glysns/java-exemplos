@@ -1,4 +1,4 @@
-package digytal.java.model.cadastro.estoque;
+package digytal.java.model.estoque;
 
 public class CompraItemEntity extends CompraItem {
 	
