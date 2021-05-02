@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import digytal.java.commons.Dto;
 import digytal.java.commons.Model;
@@ -106,5 +107,8 @@ public class CrudRepository <D extends Dto> {
 		String sql = String.format("SELECT e FROM  %s e WHERE e.%s %s :param", getEntityView(cls).getName(),field, operator);
 		List list= em.createQuery(sql).setParameter("param", param ).getResultList();
 		return list;
+	}
+	protected void a() {
+		Query q = null;
 	}
 }
