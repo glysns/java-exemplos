@@ -1,5 +1,7 @@
 package digytal.java.infra.sql;
 
+import java.util.Map.Entry;
+
 public class Condition {
 	public String field;
 	public Operator comparator = Operator.EQUALS;
@@ -28,16 +30,19 @@ public class Condition {
 			this.symbol = op;
 		}		
 	}
-	public static Condition condition(String field, Object value) {
-		return condition(field,Operator.EQUALS, value,Operator.AND);
+	public static Condition of(Entry<String, Object> condition) {
+		return of(condition.getKey(),Operator.EQUALS, condition.getValue(),Operator.AND);
 	}
-	public static Condition condition(String field,Operator comparator, Object value) {
-		return condition(field, comparator, value, Operator.AND);
+	public static Condition of(String field, Object value) {
+		return of(field,Operator.EQUALS, value,Operator.AND);
 	}
-	public static Condition condition(String field, Operator comparator, Object value, Operator logic) {
-		return condition(field, comparator, value, true, logic);
+	public static Condition of(String field,Operator comparator, Object value) {
+		return of(field, comparator, value, Operator.AND);
 	}
-	public static Condition condition(String field, Operator comparator, Object value, boolean like, Operator logic) {
+	public static Condition of(String field, Operator comparator, Object value, Operator logic) {
+		return of(field, comparator, value, true, logic);
+	}
+	public static Condition of(String field, Operator comparator, Object value, boolean like, Operator logic) {
 		Object v = value;
 		if( like && value instanceof String) {
 			comparator = Operator.LIKE;
