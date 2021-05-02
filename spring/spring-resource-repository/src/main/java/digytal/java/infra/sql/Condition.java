@@ -1,16 +1,10 @@
 package digytal.java.infra.sql;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import digytal.java.model.produto.ProdutoView;
-
 public class Condition {
 	public String field;
 	public Operator comparator = Operator.EQUALS;
 	public Object value;
 	public Operator logic = Operator.AND;
-	//https://docs.microsoft.com/pt-br/sql/t-sql/language-elements/comparison-operators-transact-sql?view=sql-server-ver15
 	public enum Operator {
 		AND("AND"),
 		OR("OR"),
@@ -35,18 +29,18 @@ public class Condition {
 		}		
 	}
 	public static Condition condition(String field, Object value) {
-		return condition(field, Condition.Operator.EQUALS, value, Condition.Operator.AND);
+		return condition(field,Operator.EQUALS, value,Operator.AND);
 	}
-	public static Condition condition(String field, Condition.Operator comparator, Object value) {
-		return condition(field, comparator, value, Condition.Operator.AND);
+	public static Condition condition(String field,Operator comparator, Object value) {
+		return condition(field, comparator, value, Operator.AND);
 	}
-	public static Condition condition(String field, Condition.Operator comparator, Object value, Condition.Operator logic) {
+	public static Condition condition(String field, Operator comparator, Object value, Operator logic) {
 		return condition(field, comparator, value, true, logic);
 	}
-	public static Condition condition(String field, Condition.Operator comparator, Object value, boolean like, Condition.Operator logic) {
+	public static Condition condition(String field, Operator comparator, Object value, boolean like, Operator logic) {
 		Object v = value;
 		if( like && value instanceof String) {
-			comparator = Condition.Operator.LIKE;
+			comparator = Operator.LIKE;
 			v="%" + value+"%";
 		}
 		Condition condition = new Condition();
@@ -57,14 +51,4 @@ public class Condition {
 		return condition;
 		
 	}
-	public static void main(String[] args) throws Exception {
-		List<Condition> conditions = new ArrayList<Condition>();
-		Condition c = new Condition();
-		c.field="nome";
-		c.value="FORD";
-		conditions.add(c);
-		String sql = JPQLUtil.of(ProdutoView.class).conditions(conditions).sql();
-		System.out.println(sql);
-	}
-
 }
