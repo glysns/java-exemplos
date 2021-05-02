@@ -97,7 +97,17 @@ public class CrudRepository <D> {
 		return (E) entity;
 		//return convert(entity);
 	}
-	//{"conditions": {"nome":"NOTE BOOK DELL 2X1 INSPIRON"}}
+	
+	//"conditions": {"nome":"NOTEBOOK DELL 2X1 INSPIRON"}
+	protected <E> List<E> list() {
+		return list(dto);
+	}
+	protected <E> List<E> list(Class cls) {
+		return list(cls, Map.of());
+	}
+	protected <E> List<E> list(Map<String, Object> conditions) {
+		return list(dto,conditions);
+	}
 	protected <E> List<E> list(Class cls, Map<String, Object> conditions) {
 		List<Condition> filter = filter(conditions);
 		JPQLUtil jpql = JPQLUtil.of(getEntityView(cls)).conditions(filter);

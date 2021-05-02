@@ -1,5 +1,7 @@
 package digytal.java.resource;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import digytal.java.commons.http.Response;
 import digytal.java.infra.exception.config.BusinessException;
+import digytal.java.infra.sql.Search;
+import digytal.java.model.produto.Produto;
 import digytal.java.repository.CrudRepository;
 
 public abstract class ResourceRepository<D> extends CrudRepository<D>{
@@ -24,5 +28,15 @@ public abstract class ResourceRepository<D> extends CrudRepository<D>{
 		Object model= find(id);
 		return Response.ok(model);
 	}
+	@GetMapping("/all/")
+	public Response all()  throws BusinessException {
+		return Response.ok(list());
+	}
+	@PostMapping("/search")
+	public Response search(@RequestBody Search search)  throws BusinessException {
+		List list= list(search.conditions);
+		return Response.ok(list);
+	}
+	
 	
 }
