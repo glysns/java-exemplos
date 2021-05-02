@@ -26,13 +26,12 @@ public class JPQLUtil {
 		sb.append(instance.conditions.size()==0?"":" WHERE ");
 		for(Condition c: instance.conditions) {
 			String pname ="p"+p++;
-			sb.append(String.format("e.%s %s :%s %s", c.field, c.comparator.symbol, pname, (conditions.size()==p?"" :c.logic)));
+			sb.append(String.format("e.%s %s :%s %s ", c.field, c.comparator.symbol, pname, (conditions.size()==p?"" :c.logic)));
 			params.put(pname, c.value);
 		}
+		System.out.println(sb.toString());
 		return sb.toString();
 	}
-	public Map<String, Object> getParams() {
-		return params;
-	}
+	
 	
 }

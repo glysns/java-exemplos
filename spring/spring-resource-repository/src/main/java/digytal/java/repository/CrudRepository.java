@@ -112,6 +112,7 @@ public class CrudRepository <D> {
 		List<Condition> filter = filter(conditions);
 		JPQLUtil jpql = JPQLUtil.of(getEntityView(cls)).conditions(filter);
 		Query query = em.createQuery(jpql.sql());
+		System.out.println(filter);
 		jpql.params.entrySet().forEach(p->{
 			query.setParameter(p.getKey(), p.getValue());
 		});
@@ -120,7 +121,7 @@ public class CrudRepository <D> {
 	}
 	protected List<Condition> filter(Map<String, Object> conditions){
 		return conditions.entrySet().stream().map(c->{
-			return Condition.of(c.getKey(), c.getValue());
+			return Condition.of(c);
 		}).collect(Collectors.toList());
 	}
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import digytal.java.commons.http.Response;
 import digytal.java.infra.exception.config.BusinessException;
 import digytal.java.infra.sql.Search;
-import digytal.java.model.produto.Produto;
 import digytal.java.repository.CrudRepository;
 
 public abstract class ResourceRepository<D> extends CrudRepository<D>{
@@ -32,11 +31,8 @@ public abstract class ResourceRepository<D> extends CrudRepository<D>{
 	public Response all()  throws BusinessException {
 		return Response.ok(list());
 	}
-	@PostMapping("/search")
-	public Response search(@RequestBody Search search)  throws BusinessException {
-		List list= list(search.conditions);
-		return Response.ok(list);
+		@PostMapping(path="/search")
+	public List search(@RequestBody Search search) {
+		return list(search.conditions);
 	}
-	
-	
 }

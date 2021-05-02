@@ -31,16 +31,13 @@ public class Condition {
 		}		
 	}
 	public static Condition of(Entry<String, Object> condition) {
-		return of(condition.getKey(),Operator.EQUALS, condition.getValue(),Operator.AND);
+		return of(condition,Operator.EQUALS);
 	}
-	public static Condition of(String field, Object value) {
-		return of(field,Operator.EQUALS, value,Operator.AND);
+	public static Condition of(Entry<String, Object> condition, Operator comparator) {
+		return of(condition, comparator,Operator.AND);
 	}
-	public static Condition of(String field,Operator comparator, Object value) {
-		return of(field, comparator, value, Operator.AND);
-	}
-	public static Condition of(String field, Operator comparator, Object value, Operator logic) {
-		return of(field, comparator, value, true, logic);
+	public static Condition of(Entry<String, Object> condition, Operator comparator, Operator logic) {
+		return of(condition.getKey(), comparator, condition.getValue(), true, logic);
 	}
 	public static Condition of(String field, Operator comparator, Object value, boolean like, Operator logic) {
 		Object v = value;
@@ -56,4 +53,10 @@ public class Condition {
 		return condition;
 		
 	}
+	@Override
+	public String toString() {
+		return "Condition [field=" + field + ", comparator=" + comparator + ", value=" + value + ", logic=" + logic
+				+ "]";
+	}
+	
 }
