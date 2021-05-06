@@ -5,10 +5,11 @@ import java.util.Map.Entry;
 
 public class Condition {
 	public String field;
-	public Operator comparator = Operator.EQUALS;
+	public Operator comparator;
 	public Object value;
-	public Operator logic = Operator.AND;
+	public Operator logic;
 	public enum Operator {
+		WHERE("WHERE"),
 		AND("AND"),
 		OR("OR"),
 		EQUALS("="), 

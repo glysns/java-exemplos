@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import digytal.java.infra.sql.Condition.Operator;
+
 public class JPQLUtil {
 	private String select;
-	public List<Condition> conditions = new ArrayList<Condition>();
+	private List<Condition> conditions = new ArrayList<Condition>();
 	public Map<String, Object> params = new HashMap<String, Object>();
 	private static JPQLUtil instance;
 	
@@ -30,15 +32,15 @@ public class JPQLUtil {
 		conditions.remove(orderBy);
 		for(Condition c: instance.conditions) {
 			if(c.value!=null) {
-				sb.append(p==0?" WHERE ":" ");
+				Operator l= p==0? Operator.WHERE : c.logic;
 				String pname ="p"+p++;
-				sb.append(String.format("e.%s %s :%s %s ", c.field, c.comparator.symbol, pname, (conditions.size()==p?"" :c.logic)));
+				sb.append(String.format(" %s e.%s %s :%s", l, c.field, c.comparator.symbol, pname));
 				params.put(pname, c.value);
 				
 			}
 		}
 		if(orderBy!=null)
-			sb.append(" ORDER BY " + " e." + orderBy.value.toString().replaceAll("\\%", ""));
+			sb.append(" ORDER BY " + "e." + orderBy.value.toString().replaceAll("\\%", ""));
 		System.out.println(sb.toString());
 		return sb.toString();
 	}
