@@ -1,9 +1,11 @@
 package digytal.java.repository;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -13,12 +15,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import digytal.java.commons.Model;
+import digytal.java.commons.SimpleModel;
 import digytal.java.infra.converter.ModelConveter;
 import digytal.java.infra.sql.Condition;
 import digytal.java.infra.sql.JPQLUtil;
 
 //SEARCH REPOSITORY
-public class CrudRepository <D> {
+public abstract class CrudRepository <D> {
 	@PersistenceContext
 	protected EntityManager em;
 	protected Class<D> dto;
@@ -98,7 +101,6 @@ public class CrudRepository <D> {
 		return (E) entity;
 		//return convert(entity);
 	}
-	
 	//"conditions": {"nome":"NOTEBOOK DELL 2X1 INSPIRON"}
 	protected <E> List<E> list() {
 		return list(dto);
@@ -106,12 +108,21 @@ public class CrudRepository <D> {
 	protected <E> List<E> list(Class cls) {
 		return list(cls, new HashMap<>());
 	}
+	protected <E> List<E> list(String field, Object value) {
+		return list(Collections.singletonMap(field, value));
+	}
 	protected <E> List<E> list(Map<String, Object> conditions) {
 		return list(dto,conditions);
 	}
-	protected <E> List<E> list(Class cls, Map<String, Object> conditions) {
+	
+	protected <E> List<E> list(Class cls, Map<String, Object> conditions,String ... fields) {
 		List<Condition> filter = filter(conditions);
-		JPQLUtil jpql = JPQLUtil.of(getEntityView(cls)).conditions(filter);
+		String select = String.format("SELECT e FROM %s e", getEntityView(cls).getName());
+		if(fields.length>0) {
+			select = String.format("SELECT NEW %s (%s) FROM %s e", SimpleModel.class.getName(),simpleModelFields(fields), getEntityView(cls).getName());
+		}
+		
+		JPQLUtil jpql = JPQLUtil.of(select).conditions(filter);
 		Query query = em.createQuery(jpql.sql());
 		System.out.println(filter);
 		jpql.params.entrySet().forEach(p->{
@@ -120,9 +131,36 @@ public class CrudRepository <D> {
 		List list= query.getResultList();
 		return list;
 	}
+	
+	protected List<SimpleModel> simpleList(String field, Object value,String ... fields) {
+		return simpleList(dto, field, value,fields);
+	}
+	
+	protected List<SimpleModel> simpleList(Class cls, String field, Object value,String ... fields) {
+		return simpleList(cls, Collections.singletonMap(field, value),fields);
+	}
+	
+	protected List<SimpleModel> simpleList(Map<String, Object> conditions, String ... fields) {
+		return simpleList(dto,conditions,fields);
+	}
+	
+	
+	protected List<SimpleModel> simpleList(Class cls, Map<String, Object> conditions, String ... fields) {
+		return list(cls,conditions,fields);
+	}
+	
+	private String simpleModelFields(String ... fields) {
+		StringJoiner joiner = new StringJoiner(", ");
+        for (CharSequence cs: fields) {
+            joiner.add("e."+cs);
+        }
+        return joiner.toString();
+	}
 	protected List<Condition> filter(Map<String, Object> conditions){
 		return conditions.entrySet().stream().map(c->{
 			return Condition.of(c);
 		}).collect(Collectors.toList());
 	}
+	
+	
 }

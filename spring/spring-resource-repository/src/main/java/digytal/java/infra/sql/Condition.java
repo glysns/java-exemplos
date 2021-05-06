@@ -1,5 +1,6 @@
 package digytal.java.infra.sql;
 
+import java.util.Collection;
 import java.util.Map.Entry;
 
 public class Condition {
@@ -47,13 +48,29 @@ public class Condition {
 		return of(condition.getKey(), comparator, condition.getValue(), true, logic,clsEnum);
 	}
 	public static Condition of(String field, Operator comparator, Object value, boolean like, Operator logic, Class ... clsEnum) {
-		value = prepare(value, like);
+		//value = prepare(value, like);
 		Condition condition = new Condition();
-		if(clsEnum.length>0)
-			value = Enum.valueOf(clsEnum[0], value.toString().toUpperCase().replaceAll("\\%", ""));
-		else if( like && value instanceof String) {
-			comparator = Operator.LIKE;
-		}
+		
+		if(value !=null && !value.toString().isEmpty()) {
+			if(value instanceof Collection)
+				comparator = Operator.IN;
+			else {
+				String v = value.toString();
+				if(clsEnum.length>0)
+					value = Enum.valueOf(clsEnum[0], value.toString().toUpperCase());
+				else if(v.matches("-?\\d+"))
+					value = Integer.valueOf(v);
+				else if(v.matches("-?\\d+\\.\\d+"))
+					value = Double.valueOf(v);
+				else if(v.matches("true|false"))
+					value = Boolean.valueOf(v);
+				else if(like) {
+					value="%" + value+"%";
+					comparator = Operator.LIKE;
+				}
+			}
+		}else
+			value=null;
 		
 		condition.field=field;
 		condition.comparator=comparator;
@@ -62,28 +79,34 @@ public class Condition {
 		return condition;
 		
 	}
-	private static Object prepare(Object value, boolean like) {
-		if(value !=null && !value.toString().isEmpty()) {
-			String v = value.toString();
-			if(v.matches("-?\\d+"))
-				value = Integer.valueOf(v);
-			else if(v.matches("-?\\d+\\.\\d+"))
-				value = Double.valueOf(v);
-			else if(v.matches("true|false"))
-				value = Boolean.valueOf(v);
-			else if(like) {
-				value="%" + value+"%";
-			}
-			System.out.println(value.getClass());
-			return value ;
-		}else
-			return null;
-		
-	}
+	
 	@Override
 	public String toString() {
 		return "Condition [field=" + field + ", comparator=" + comparator + ", value=" + value + ", logic=" + logic
 				+ "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((field == null) ? 0 : field.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Condition other = (Condition) obj;
+		if (field == null) {
+			if (other.field != null)
+				return false;
+		} else if (!field.equals(other.field))
+			return false;
+		return true;
 	}
 	
 }

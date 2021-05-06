@@ -6,14 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 public class JPQLUtil {
-	private Class entity;
+	private String select;
 	public List<Condition> conditions = new ArrayList<Condition>();
 	public Map<String, Object> params = new HashMap<String, Object>();
-	public static JPQLUtil instance;
+	private static JPQLUtil instance;
 	
-	public static JPQLUtil of(Class entity) {
+	public static JPQLUtil of(Class cls) {
+		return of(String.format("SELECT e FROM %s e", cls.getName()));
+	}
+	public static JPQLUtil of(String select) {
 		instance = new JPQLUtil();
-		instance.entity = entity;
+		instance.select = select;
 		return instance;
 	}
 	public JPQLUtil conditions(List<Condition> conditions ) {
@@ -21,16 +24,21 @@ public class JPQLUtil {
 		return instance;
 	}
 	public String sql() {
-		StringBuilder sb = new StringBuilder(String.format("SELECT e FROM %s e", instance.entity.getName()));
+		StringBuilder sb = new StringBuilder(select);
 		int p=0;
+		Condition orderBy=conditions.stream().filter(c -> c.field.equals("orderBy")).findFirst().orElse(null);
+		conditions.remove(orderBy);
 		for(Condition c: instance.conditions) {
 			if(c.value!=null) {
 				sb.append(p==0?" WHERE ":" ");
 				String pname ="p"+p++;
 				sb.append(String.format("e.%s %s :%s %s ", c.field, c.comparator.symbol, pname, (conditions.size()==p?"" :c.logic)));
 				params.put(pname, c.value);
+				
 			}
 		}
+		if(orderBy!=null)
+			sb.append(" ORDER BY " + " e." + orderBy.value.toString().replaceAll("\\%", ""));
 		System.out.println(sb.toString());
 		return sb.toString();
 	}
