@@ -1,20 +1,13 @@
 package utils;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
-import digytal.java.exemplos.utils.file.FileReaderUtils;
-
 public class FileReaderUtilsTest {
 	public static void main(String[] args) {
 		readerFileToString();
 	}
 	
 	private static void readerFileToString() {
+		
+		/*
 		String filePath = "C:\\dev\\file.txt";
 		List<Parcela> parcelas = new ArrayList<Parcela>();
 		try {
@@ -44,5 +37,6 @@ public class FileReaderUtilsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 	}
 }

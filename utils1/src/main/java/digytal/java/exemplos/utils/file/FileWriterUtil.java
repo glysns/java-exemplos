@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileWriter {
+public class FileWriterUtil {
 	public static void write(byte [] bytes,String newFile) throws IOException {
 		Path path = Paths.get(newFile);
         Files.write(path, bytes);
